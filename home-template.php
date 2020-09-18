@@ -51,31 +51,29 @@ Template Name: Snarfer
             <div class="mbs-text">
                 <img class="back-text" src="<?php echo get_template_directory_uri(); ?>/assets/img/text-1.png" alt="">
                 <div class="mbs-inner-text">
-                    <h4>Custom Cabinets</h4>
-                    <h1>Furnish</h1>
-                    <h2>Your Life</h2>
-                    <p>We're always working on something. Most of the time, we're focused on getting results for our clients. But every so often we get the chance to experiment with new concepts.</p>
-                    <a class="banner-btn" href="">See Our Gallery <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <h4><?php the_field('subheadingbanner'); ?></h4>
+                    <h1><?php the_field('headingbanner'); ?></h1>
+                    <p><?php the_field('headingbannercontent'); ?></p>
+                    <a class="banner-btn" href="<?php the_field('headingbannerbuttonurl'); ?>"><?php the_field('headingbannerbuttontext'); ?> <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="mbs-img">
                 
                 <div class="owl-carousel owl-theme">
-                    <div class="item">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-1.png" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-1.png" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-1.png" alt="">
-                    </div>
+                    <?php
+                        if( have_rows('bannerslider') ):
+                            while( have_rows('bannerslider') ) : the_row(); ?>
+                                <div class="item">
+                                    <img src="<?php the_sub_field('bannersliderimage'); ?>" alt="">
+                                </div>
+                            <?php endwhile;
+                        endif;
+                    ?>
                 </div>
                 
             </div>
         </div>
     </section>
-
     <!-- Our Specializations -->
     <section class="osz-section">
         <div class="container">
@@ -84,40 +82,34 @@ Template Name: Snarfer
                 <div class="site-cus-title">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-2.png" alt="">
                     <div class="cus-inner-title">
-                        <h6>Top Services</h6>
-                        <h3>Our Specializations</h3>
+                        <h6><?php the_field('heading2', 7); ?></h6>
+                        <h3><?php the_field('subheading2', 7); ?></h3>
                     </div>
                 </div>
 
                 <div class="osz-images-box">
-                    <div class="single-osz">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/ser-1.png" alt="">
-                        <div class="osz-overlay">
-                            <h5>Cabinets Repair</h5>
-                            <p>Repaint your existing cabinets. Have a beautiful kitchen for a fraction of the cost of new cabinets.</p>
-                        </div>
-                    </div>
-                    <div class="single-osz">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/ser-2.png" alt="">
-                        <div class="osz-overlay">
-                            <h5>Cabinets Repair</h5>
-                            <p>Repaint your existing cabinets. Have a beautiful kitchen for a fraction of the cost of new cabinets.</p>
-                        </div>
-                    </div>
-                    <div class="single-osz">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/ser-3.png" alt="">
-                        <div class="osz-overlay">
-                            <h5>Cabinets Repair</h5>
-                            <p>Repaint your existing cabinets. Have a beautiful kitchen for a fraction of the cost of new cabinets.</p>
-                        </div>
-                    </div>
-                    <div class="single-osz">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/ser-4.png" alt="">
-                        <div class="osz-overlay">
-                            <h5>Cabinets Repair</h5>
-                            <p>Repaint your existing cabinets. Have a beautiful kitchen for a fraction of the cost of new cabinets.</p>
-                        </div>
-                    </div>
+                    <?php
+                        $args = array(  
+                            'post_type' => 'services',
+                            'posts_per_page' => 4,
+                        );
+
+                        $loop = new WP_Query( $args ); 
+                            
+                        while ( $loop->have_posts() ) : $loop->the_post();  ?>
+                             <div class="single-osz">
+                                <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="">
+                                <div class="osz-overlay">
+                                    <h5>
+                                        <?php the_title(); ?>
+                                    </h5>
+                                    <?php the_excerpt(); ?>
+                                </div>
+                            </div>
+
+                        <?php endwhile;
+                        wp_reset_postdata(); 
+                    ?>  
                 </div>
                 
             </div>
@@ -134,27 +126,26 @@ Template Name: Snarfer
             <div class="gtk-content">
                 <div class="gtk-img">
                     <div class="gtk-img-1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/ab-1.png" alt="">
+                        <img src="<?php the_field('image_1'); ?>" alt="">
                     </div>
                     <div class="gtk-img-2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/ab-2.png" alt="">
+                        <img src="<?php the_field('image_2'); ?>" alt="">
                     </div>
                     <div class="gtk-img-3">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/ab-3.png" alt="">
                     </div>
                 </div>
                 <div class="gtk-text">
-                    
                     <div class="site-cus-title">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-3.png" alt="">
                         <div class="cus-inner-title">
-                            <h6>About us</h6>
+                            <h6><?php the_field('headingabu'); ?></h6>
                             <h3>Get To Know Us</h3>
                         </div>
                     </div>
                     
-                    <p>We're always working on something. Most of the time, we're focused on getting results for our clients. But every so often we get the chance to experiment with new concepts and ideas.</p>
-                    <a href="" class="banner-btn">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <p><?php the_field('contentabu'); ?></p>
+                    <a href="<?php the_field('button_urlabou'); ?>" class="banner-btn">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -208,34 +199,24 @@ Template Name: Snarfer
                 <div class="site-cus-title">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-5.png" alt="">
                     <div class="cus-inner-title">
-                        <h6>Our projects</h6>
-                        <h3>See How We Work</h3>
-                        <p>Visit our Gallery to get a feel for the style that our clients love. If you don't see what you're looking for, get in touch and we'll be happy to help.</p>
+                        <h6><?php the_field('ourprojectsheaidng', 9); ?></h6>
+                        <h3><?php the_field('mainheding', 9); ?></h3>
+                        <p><?php the_field('contenthow', 9); ?></p>
                     </div>
                 </div>
 
                 <div class="shw-area">
-
-                    <div class="shw-box">
-                        <h2>01</h2>
-                        <h5>Concept</h5>
-                        <p>Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Quis suspendisse.</p>
-                    </div>
-                    <div class="shw-box">
-                        <h2>02</h2>
-                        <h5>Idea</h5>
-                        <p>Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Quis suspendisse.</p>
-                    </div>
-                    <div class="shw-box">
-                        <h2>03</h2>
-                        <h5>Design</h5>
-                        <p>Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Quis suspendisse.</p>
-                    </div>
-                    <div class="shw-box">
-                        <h2>04</h2>
-                        <h5>Excecution</h5>
-                        <p>Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Quis suspendisse.</p>
-                    </div>
+                    <?php $i = 1;
+                        if( have_rows('repeaterhow', 9) ):
+                            while( have_rows('repeaterhow', 9) ) : the_row(); ?>
+                                <div class="shw-box">
+                                    <h2><?php echo $i; ?></h2>
+                                    <h5><?php the_sub_field('howworksheading', 9); ?></h5>
+                                    <p><?php the_sub_field('contenthowworks', 9); ?></p>
+                                </div>
+                            <?php $i++; endwhile;
+                        endif;
+                    ?>
 
                 </div>
 
