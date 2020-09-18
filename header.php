@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/all.css">
-
+<?php wp_head(); ?>
 </head>
 <body class="home">
 
@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="header-content">
                 <div class="header-logo">
-                    <a href="">
+                    <a href="<?php site_url(); ?>">
                         <?php $custom_logo_id = get_theme_mod( 'custom_logo' );
                             $custom_logo_url = wp_get_attachment_image_url( $custom_logo_id , 'full' );
                             echo '<img src="' . esc_url( $custom_logo_url ) . '" alt="">';
@@ -32,7 +32,7 @@
                         <?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
                     </div>
                     <div class="search-icon">
-                        <img src="./assets/img/search.png" alt="">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/search.png" alt="">
                     </div>
                     <div class="mobile-bar">
                         <i class="fa fa-bars" aria-hidden="true"></i>
