@@ -4,9 +4,10 @@ Template Name: Snarfer
 <?php get_header(); ?>
 
 
-    <div class="left-bar">
-        <div class="left-bar-content">
-            <ul class="left-bar-icon">
+    <!-- Main Banner Section -->
+    <section class="mbs-section">
+        <div class="lesbianclass">
+            <ul>
                 <li>
                     <a href="<?php the_field('facebook', 'options'); ?>">
                         <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -33,19 +34,16 @@ Template Name: Snarfer
                     </a>
                 </li>
             </ul>
-            <div class="numbernadmailleftbar">
-                <a href="tel:<?php the_field('companyNumber1', 'options'); ?>">
-                    <i class="fa fa-phone" aria-hidden="true"></i> 
-                    <span>tel:<?php the_field('companyNumber1', 'options'); ?></span></a>
-                <a href="tel:<?php the_field('companyNumber2', 'options'); ?>">
-                    <span>tel:<?php the_field('companyNumber2', 'options'); ?></span></a>
-                <a href="<?php the_field('emailadress', 'options'); ?>"><i class="fa fa-envelope" aria-hidden="true"></i>  <span><?php the_field('emailadress', 'options'); ?></span></a>
-            </div>
         </div>
-    </div>
-
-    <!-- Main Banner Section -->
-    <section class="mbs-section">
+        <div class="numbersleft">
+                <a href="<?php the_field('emailadress', 'options'); ?>"><i class="fa fa-envelope" aria-hidden="true"></i>  <?php the_field('emailadress', 'options'); ?></a>
+        </div>
+        <p id="fonenumber">
+            <a href="tel:<?php the_field('companyNumber1', 'options'); ?>">
+            <i class="fa fa-phone" aria-hidden="true"></i> <?php the_field('companyNumber1', 'options'); ?></a>
+            / 
+            <a href="tel:<?php the_field('companyNumber2', 'options'); ?>"><?php the_field('companyNumber2', 'options'); ?></a>
+        </p>
         <div class="mbs-cotnent">
             <div class="mbs-text">
                 <img class="back-text" src="<?php echo get_template_directory_uri(); ?>/assets/img/text-1.png" alt="">
