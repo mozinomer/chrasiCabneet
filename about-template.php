@@ -19,7 +19,7 @@ Template Name: About
             <div class="roy-content">
 
                 <div class="site-cus-title">
-                	<img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-8.png" alt="">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-8.png" alt="">
                     <div class="cus-inner-title">
                         <h6>Welcome to JC Cabinets!</h6>
                         <h3><?php the_field('headingaboutus'); ?></h3>
@@ -35,6 +35,9 @@ Template Name: About
             <!-- Big Image Section -->
             <div class="bis-section" style="background-image: url(<?php the_field('backgroundImage'); ?>);"></div>
         </div>
+        <div class="left-contact">
+            <a href="">Contact Us</a>
+        </div>
     </section>
 
     <!-- Get In touch -->
@@ -43,10 +46,10 @@ Template Name: About
             <div class="git-content">
                 <div class="git-box">
                     <h3>Get In Touch</h3>
-                    <p>For more information, feel free to contact us. Call today for a free estimate or for a free drawing!</p>
+                    <p>For more information, feel free to contact us.<br/> Call today for a free estimate or for a free drawing!</p>
                 </div>
                 <div class="git-box">
-                    <a href="" class="git-btn">Contact Us <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <a href="http://wp.cmswebdeveloper.com/jc-cabinets/get-in-touch/" class="git-btn">Contact Us <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>

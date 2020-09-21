@@ -33,14 +33,13 @@ Template Name: Snarfer
                     </a>
                 </li>
             </ul>
-            <div class="contact-links">
-                <a href="<?php the_field('emailadress', 'options'); ?>"><i class="fa fa-envelope" aria-hidden="true"></i>  <?php the_field('emailadress', 'options'); ?></a>
-                <p>
+            <div class="numbernadmailleftbar">
+                <a href="tel:<?php the_field('companyNumber1', 'options'); ?>">
                     <i class="fa fa-phone" aria-hidden="true"></i> 
-                    <a href="tel:<?php the_field('companyNumber1', 'options'); ?>"><?php the_field('companyNumber1', 'options'); ?></a>
-                    / 
-                    <a href="tel:<?php the_field('companyNumber2', 'options'); ?>"><?php the_field('companyNumber2', 'options'); ?></a>
-                </p>
+                    <span>tel:<?php the_field('companyNumber1', 'options'); ?></span></a>
+                <a href="tel:<?php the_field('companyNumber2', 'options'); ?>">
+                    <span>tel:<?php the_field('companyNumber2', 'options'); ?></span></a>
+                <a href="<?php the_field('emailadress', 'options'); ?>"><i class="fa fa-envelope" aria-hidden="true"></i>  <span><?php the_field('emailadress', 'options'); ?></span></a>
             </div>
         </div>
     </div>
