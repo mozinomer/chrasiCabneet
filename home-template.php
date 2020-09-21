@@ -232,7 +232,6 @@ Template Name: Snarfer
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/play-btn.png" alt="">
             </a>
         </div>
-        
     </section>
 
     <!-- Our testimonials -->

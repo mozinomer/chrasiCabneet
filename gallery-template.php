@@ -85,7 +85,7 @@ foreach($taxonomies as $category) {
 	    echo '</h1>';
 	    endwhile; 
 		echo '</div>';
-		$s = ++;
+		// $s = ++;
     }
 } 
 ?>  
