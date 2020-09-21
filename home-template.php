@@ -53,6 +53,7 @@ Template Name: Snarfer
                 <div class="mbs-inner-text">
                     <h4><?php the_field('subheadingbanner'); ?></h4>
                     <h1><?php the_field('headingbanner'); ?></h1>
+                    <h2><?php the_field('headingbanner2'); ?></h2>
                     <p><?php the_field('headingbannercontent'); ?></p>
                     <a class="banner-btn" href="<?php the_field('headingbannerbuttonurl'); ?>"><?php the_field('headingbannerbuttontext'); ?> <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 </div>
@@ -116,7 +117,7 @@ Template Name: Snarfer
         </div>
 
         <div class="left-contact">
-            <a href="">Contact Us</a>
+            <a href="<?php the_field('contact_us_button_link', 7); ?>">Contact Us</a>
         </div>
     </section>
 
@@ -158,34 +159,45 @@ Template Name: Snarfer
             <div class="site-cus-title">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-4.png" alt="">
                 <div class="cus-inner-title">
-                    <h6>Our projects</h6>
-                    <h3>Our Specializations</h3>
-                    <p>Visit our Gallery to get a feel for the style that our clients love. If you don't see what you're looking for, get in touch and we'll be happy to help.</p>
+                    <h6><?php the_field('specialization_heading', 7); ?></h6>
+                    <h3><?php the_field('specializations_text', 7); ?></h3>
                 </div>
             </div>
 
             <!-- Our Project Gallery -->
             <div class="opg-gallery">
+                <?php if( have_rows('specializations') ):
+                           while ( have_rows('specializations') ) : the_row();
+                         ?>
                 <div class="opg-item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pro-1.png" alt="">
+                    <img src="<?php the_sub_field('specialization_image'); ?>" alt="">
                 </div>
-                <div class="opg-item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pro-2.png" alt="">
-                </div>
-                <div class="opg-item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pro-3.png" alt="">
-                </div>
-                <div class="opg-item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pro-4.png" alt="">
-                </div>
-                <div class="opg-item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pro-5.png" alt="">
-                </div>
-                <div class="opg-item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pro-6.png" alt="">
-                </div>
-                <div class="opg-item">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pro-7.png" alt="">
+                <?php
+                          endwhile;
+                      else :
+                          echo " No Data found";
+                      endif;
+                      ?>
+                
+            </div>
+            <div class="opg-gallery-slider">
+                <div class="container">
+                    <div class="owl-carousel owl-theme">
+                        <?php if( have_rows('specializations') ):
+                           while ( have_rows('specializations') ) : the_row();
+                         ?>
+                        <div class="item">
+                            <div class="opg-item">
+                                <img src="<?php the_sub_field('specialization_image'); ?>" alt="">
+                            </div>
+                        </div>
+                        <?php
+                          endwhile;
+                      else :
+                          echo " No Data found";
+                      endif;
+                      ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -226,12 +238,13 @@ Template Name: Snarfer
 
     <!-- Video Section -->
     <section class="vs-section">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/video-thumb.png" alt="">
+        <img src="<?php the_field('video_image', 7); ?>" alt="">
         <div class="vs-overlay">
-            <a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk">
+            <a data-fancybox href="<?php the_field('video_link', 7); ?>">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/play-btn.png" alt="">
             </a>
         </div>
+        
     </section>
 
     <!-- Our testimonials -->
@@ -242,41 +255,32 @@ Template Name: Snarfer
                 <div class="site-cus-title">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-6.png" alt="">
                     <div class="cus-inner-title">
-                        <h6>Our testimonials</h6>
-                        <h3>What Clients Say</h3>
+                        <h6><?php the_field('testimonial_heading', 7); ?></h6>
+                        <h3><?php the_field('testimonial_text', 7); ?></h3>
                     </div>
                 </div>
 
                 <div class="ots-slider">
                     
                     <div class="owl-carousel owl-theme">
+                        <?php if( have_rows('testimonials') ):
+                           while ( have_rows('testimonials') ) : the_row();
+                         ?>
                         <div class="item">
                             <div class="ots-slide-box">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam.</p>
+                                <p><?php the_sub_field('client_quote'); ?></p>
                                 <div class="ots-box-name">
-                                    <h5>Joe Jordan</h5>
-                                    <p>United States Of America</p>
+                                    <h5><?php the_sub_field('client_name'); ?></h5>
+                                    <p><?php the_sub_field('client_location'); ?></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="ots-slide-box">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam.</p>
-                                <div class="ots-box-name">
-                                    <h5>Joe Jordan</h5>
-                                    <p>United States Of America</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ots-slide-box">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor dolore magna aliquyam erat,sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam.</p>
-                                <div class="ots-box-name">
-                                    <h5>Joe Jordan</h5>
-                                    <p>United States Of America</p>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                          endwhile;
+                      else :
+                          echo " No Data found";
+                      endif;
+                      ?>
                     </div>
                     
                 </div>
@@ -292,76 +296,37 @@ Template Name: Snarfer
                 <div class="site-cus-title">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/text-7.png" alt="">
                     <div class="cus-inner-title">
-                        <h6>Our Team</h6>
-                        <h3>Teamwork Makes Dream Work</h3>
+                        <h6><?php the_field('team_heading', 7); ?></h6>
+                        <h3><?php the_field('team_subheading', 7); ?></h3>
                     </div>
                 </div>
 
                 <div class="tmd-member">
+                    <?php if( have_rows('teams') ):
+                           while ( have_rows('teams') ) : the_row();
+                         ?>
                     <div class="tmd-box">
                         <div class="tmd-box-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/member-1.png" alt="">
+                            <img src="<?php the_sub_field('member_image'); ?>" alt="">
                             <div class="tmd-overlay">
                                 <ul>
-                                    <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li><a href="<?php the_sub_field('member_facebook_link'); ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="<?php the_sub_field('member_twitter_link'); ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="<?php the_sub_field('member_linkdin_link'); ?>"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="tmd-box-name">
-                            <h5>Larry Dean</h5>
-                            <p>Designer</p>
+                            <h5><?php the_sub_field('member_name'); ?></h5>
+                            <p><?php the_sub_field('member_designation'); ?></p>
                         </div>
                     </div>
-                    <div class="tmd-box">
-                        <div class="tmd-box-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/member-2.png" alt="">
-                            <div class="tmd-overlay">
-                                <ul>
-                                    <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tmd-box-name">
-                            <h5>Andreea Grand</h5>
-                            <p>Designer</p>
-                        </div>
-                    </div>
-                    <div class="tmd-box">
-                        <div class="tmd-box-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/member-3.png" alt="">
-                            <div class="tmd-overlay">
-                                <ul>
-                                    <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tmd-box-name">
-                            <h5>Lori Foster</h5>
-                            <p>Designer</p>
-                        </div>
-                    </div>
-                    <div class="tmd-box">
-                        <div class="tmd-box-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/member-4.png" alt="">
-                            <div class="tmd-overlay">
-                                <ul>
-                                    <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tmd-box-name">
-                            <h5>Jose Rivera</h5>
-                            <p>Designer</p>
-                        </div>
-                    </div>
+                    <?php
+                          endwhile;
+                      else :
+                          echo " No Data found";
+                      endif;
+                      ?>
                 </div>
             </div>
         </div>

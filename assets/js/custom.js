@@ -29,6 +29,7 @@ $('.ccs-slider .owl-carousel').owlCarousel({
 //Search Bar
 $('.search-icon').click(function(){
     $('.searchbar-area').toggleClass('search-active');
+    $(this).toggleClass('active');
 });
 
 
@@ -36,3 +37,13 @@ $('.search-icon').click(function(){
 $('.mobile-bar').click(function(){
     $('.header-menu ul').toggleClass('active-menu');
 });
+
+//Home Page 
+ $('.opg-gallery-slider .owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            dots:false,
+            items:1,
+            navText:["<div class='nav-btn prev-slide'><p>Previous</p></div>","<div class='nav-btn next-slide'><p>Next</p></div>"]
+        });

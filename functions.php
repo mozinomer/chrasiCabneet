@@ -1,12 +1,12 @@
 <?php 
 
 function theme_prefix_setup() {
-	
-	add_theme_support( 'custom-logo', array(
-		'height'      => 100,
-		'width'       => 400,
-		'flex-width' => true,
-	) );
+    
+    add_theme_support( 'custom-logo', array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-width' => true,
+    ) );
 
 }
 add_action( 'after_setup_theme', 'theme_prefix_setup' );
@@ -23,15 +23,15 @@ function register_my_menus() {
 add_action( 'init', 'register_my_menus' );
 
 if( function_exists('acf_add_options_page') ) {
-	
-	acf_add_options_page(array(
-		'page_title' 	=> 'Theme General Settings',
-		'menu_title'	=> 'Theme Settings',
-		'menu_slug' 	=> 'theme-general-settings',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> false
-	));
-	
+    
+    acf_add_options_page(array(
+        'page_title'    => 'Theme General Settings',
+        'menu_title'    => 'Theme Settings',
+        'menu_slug'     => 'theme-general-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => false
+    ));
+    
 }
 add_theme_support( 'post-thumbnails' );
 // Our custom post type function
@@ -96,3 +96,19 @@ function themes_taxonomy() {
     );
 }
 add_action( 'init', 'themes_taxonomy');
+
+/*Contact form 7 remove span*/
+
+add_filter('wpcf7_form_elements', function($content) {
+
+    $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
+
+
+
+    $content = str_replace('<br />', '', $content);
+
+        
+
+    return $content;
+
+});

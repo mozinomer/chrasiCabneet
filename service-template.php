@@ -30,25 +30,27 @@ Template Name: service
                 <div class="osz-images-box">
                     <?php
                         $args = array(  
-					        'post_type' => 'services',
-					        'posts_per_page' => 4,
-					    );
+                            'post_type' => 'services',
+                            'posts_per_page' => 4,
+                        );
 
-					    $loop = new WP_Query( $args ); 
-					        
-					    while ( $loop->have_posts() ) : $loop->the_post();  ?>
-					         <div class="single-osz">
+                        $loop = new WP_Query( $args ); 
+                            
+                        while ( $loop->have_posts() ) : $loop->the_post();  ?>
+                             <div class="single-osz">
                                 <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="">
                                 <div class="osz-overlay">
+                                    <a href="<?php the_permalink(); ?>">
                                     <h5>
                                         <?php the_title(); ?>
                                     </h5>
                                     <?php the_excerpt(); ?>
+                                        </a>
                                 </div>
                             </div>
 
-					    <?php endwhile;
-					    wp_reset_postdata(); 
+                        <?php endwhile;
+                        wp_reset_postdata(); 
                     ?>  
                 </div>
                 
@@ -75,17 +77,17 @@ Template Name: service
                 </div>
 
                 <div class="shw-area">
-            		<?php $i = 1;
-						if( have_rows('repeaterhow') ):
-						    while( have_rows('repeaterhow') ) : the_row(); ?>
-			                    <div class="shw-box">
-			                        <h2><?php echo $i; ?></h2>
-			                        <h5><?php the_sub_field('howworksheading'); ?></h5>
-			                        <p><?php the_sub_field('contenthowworks'); ?></p>
-			                    </div>
-						    <?php $i++; endwhile;
-						endif;
-					?>
+                    <?php $i = 1;
+                        if( have_rows('repeaterhow') ):
+                            while( have_rows('repeaterhow') ) : the_row(); ?>
+                                <div class="shw-box">
+                                    <h2><?php echo $i; ?></h2>
+                                    <h5><?php the_sub_field('howworksheading'); ?></h5>
+                                    <p><?php the_sub_field('contenthowworks'); ?></p>
+                                </div>
+                            <?php $i++; endwhile;
+                        endif;
+                    ?>
 
                 </div>
 
